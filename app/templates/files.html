@@ -1,0 +1,13 @@
+{% extends base.html %}
+
+{% block main %}
+<h1 class="page-header">All Uploaded Files</h1>
+{% include 'flash_messages.html' %}
+
+<p>Images uploaded.</p>
+<div class="wrapper">
+    {% for picture in all_pictures %}
+    <div><img src="{{ur_for('static', filename='uploads/'+all_pictures)}}"></div>
+    {% endfor %}
+</div>
+{% endblock %}

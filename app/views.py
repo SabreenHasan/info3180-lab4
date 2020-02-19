@@ -49,6 +49,21 @@ def upload():
     return render_template('upload.html', form=form)
 
 
+def get_uploaded_images():
+    all_pictures = os.getcwd()
+    print all_pictures
+    
+
+@app.route('/files')
+def files():
+    all_pictures = get_uploaded_images()
+    for root, dirs, files in os.walk(all_pictures + 'app/static/uploads'):
+        for file in files:
+            print (os.path.join(root, file))
+
+    return render_template('files.html', all_pictures=image)
+
+
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     error = None
