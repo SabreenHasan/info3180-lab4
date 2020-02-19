@@ -6,10 +6,19 @@
 {% include 'flash_messages.html' %}
 
 {# Add the appropriate method and enctype attributes to the form tag to allow for file uploads #}
-<form action="{{ url_for('upload') }}">
-
+<form method='POST' type="file" enctype="multipart/form-data" action="{{ url_for('upload') }}">
+  {{ form.csrf_token }}
   {# Add the file upload field as you learnt for Flask-WTF #}
-
+  
+  {{ form.image.label }}<br>
+  Please upload an image here.
+  {{ form.image }}
+    <ul>
+    {% for errors in form.image.errors %}
+      <li>{{ error }}</li>
+    {% endfor %}
+    </ul>
+  
   <button type="submit" name="submit" class="btn btn-primary">Upload file</button>
 </form>
 {% endblock %}
